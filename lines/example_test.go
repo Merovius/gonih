@@ -11,7 +11,7 @@ import (
 	"gonih.org/lines"
 )
 
-func ExampleUnmarshal() {
+func Example_unmarshal() {
 	type X struct {
 		Foo int
 		Bar bool
@@ -37,7 +37,7 @@ func ExampleUnmarshal() {
 	// Output: Syntax error at line 4 column 2: invalid character '}' looking for beginning of object key string
 }
 
-func ExampleDecoder() {
+func Example_decoder() {
 	type X struct {
 		Foo int
 		Bar bool
