@@ -1,0 +1,24 @@
+syntax = "proto3";
+package address;
+
+option go_package = "gonih.org/cmp/internal/addresspb";
+
+message Person {
+	string name = 1;
+	string email = 2;
+
+	repeated PhoneNumber numbers = 3;
+}
+
+	enum PhoneType {
+		MOBILE = 0;
+		HOME = 1;
+		WORK = 2;
+	}
+
+	message PhoneNumber {
+		string number = 1;
+		PhoneType type = 2;
+	}
+
+

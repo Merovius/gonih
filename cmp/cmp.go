@@ -12,7 +12,7 @@
 // sorting structs by multiple fields. The rest are helpers to make it easy to
 // extract fields and sort composite types like pointers and slices.
 //
-// TODO: Add examples and benchmark.
+// TODO: Add benchmark.
 package cmp
 
 // Ordered is a constraint that permits any ordered type: any type
@@ -137,16 +137,16 @@ func Deref[T any](cmp Cmp[T]) Cmp[*T] {
 // non-nil pointers are compared using cmp.
 //
 // This is useful to sort pointers if you do not know whether or not they can be nil.
-func PointerFunc[T any](then Cmp[*T]) Cmp[*T] {
-	return ByPointerFunc(id[*T], then)
+func PointerFunc[T any](cmp Cmp[*T]) Cmp[*T] {
+	return ByPointerFunc(id[*T], cmp)
 }
 
 // Pointer compares two pointers to an ordered type.
 //
 // All nil pointers are considered equal and less than any non-nil pointer. Two
-// non-nil pointers are compared using cmp.
+// non-nil pointers are compared using Compare.
 //
-// This is useful to sort pointers if ou do not know whether or not they can be nil.
+// This is useful to sort pointers if you do not know whether or not they can be nil.
 func Pointer[T Ordered](l, r *T) int {
 	return PointerFunc(Deref(Compare[T]))(l, r)
 }
