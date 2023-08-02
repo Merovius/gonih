@@ -152,12 +152,12 @@ func Pointer[T Ordered](l, r *T) int {
 }
 
 // Reverse a comparator function.
-func Reverse[T any](cmp func(T, T) int) Cmp[T] {
+func Reverse[T any](cmp Cmp[T]) Cmp[T] {
 	return func(l, r T) int { return cmp(r, l) }
 }
 
 // ByFunc is like By, but uses a custom comparator for the field type.
-func ByFunc[C, F any](by func(C) F, cmp func(F, F) int) Cmp[C] {
+func ByFunc[C, F any](by func(C) F, cmp Cmp[F]) Cmp[C] {
 	return func(l, r C) int { return cmp(by(l), by(r)) }
 }
 
