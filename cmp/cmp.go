@@ -58,6 +58,18 @@ func Compare[T Ordered](x, y T) int {
 	return 0
 }
 
+// Bool compares two booleans, sorting false before true.
+func Bool[T ~bool](x, y T) int {
+	switch {
+	case x == y:
+		return 0
+	case x == true:
+		return 1
+	default:
+		return -1
+	}
+}
+
 func id[T any](v T) T { return v }
 
 // Cmp is a comparator function for T. It must return -1 if a < b, 0 if a == b
